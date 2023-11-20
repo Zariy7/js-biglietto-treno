@@ -1,19 +1,22 @@
-let kilometres = prompt('Quanti kilometri vuoi percorrere?');
-let age = prompt('Quanti hanni hai?');
-let pricePerKm = 0.21;
-let price = pricePerKm * kilometres;
-let priceMultiplier = 1;
+function priceCalc(){
+    let kilometres = document.getElementById('kilometres').value;
+    let age = document.getElementById('age').value;
+    let priceKmRatio = 0.21;
+    let price = priceKmRatio * kilometres;
+    let priceDiscountMultiplier = 1;
 
-if(age <= 18 || age >= 65){
-    if(age <= 18){
-        priceMultiplier = 0.80;
+    //CALCULATE DISCOUNT
+    if(age <= 18 || age >= 65){
+        if(age <= 18){
+            priceDiscountMultiplier = 0.80;
+        }
+        else{
+            priceDiscountMultiplier = 0.60;
+        }
     }
-    else{
-        priceMultiplier = 0.60;
-    }
+
+    price *= priceDiscountMultiplier;
+    price = price.toFixed(2);
+    let priceMsg = `${price}$`
+    document.getElementById('price').innerHTML = priceMsg;
 }
-
-price *= priceMultiplier;
-price = price.toFixed(2);
-let priceMsg = `Your price is ${price}$.`
-console.log(priceMsg);
